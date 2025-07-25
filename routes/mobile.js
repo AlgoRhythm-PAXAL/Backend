@@ -236,6 +236,7 @@ router.post("/updateParcelStatus", authMiddleware, async (req, res) => {
 
     const updateData = {
       status,
+      ...(status === 'PickedUp' && { parcelPickedUpDate: new Date() }),
       ...(status === 'Delivered' && { parcelDeliveredDate: new Date() })
     };
 
